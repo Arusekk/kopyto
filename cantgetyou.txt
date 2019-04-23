@@ -1,0 +1,9 @@
+ton C
+bpm 126
+acc 2 1 6 5
+xdd 2
+
+dur 7 1 7 1
+mel 3
+med 1 1 1.5 1 1 0.5 1 1
+

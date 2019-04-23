@@ -1,0 +1,9 @@
+ton Eb
+bpm 81
+acc 2 0 6
+xdd 6
+
+dur 4 2 2
+mel 3 3 3 3 2 2 2 1
+med 1
+

@@ -1,0 +1,9 @@
+ton E
+bpm 122
+acc 6 1 5 4
+xdd 1
+
+dur 4
+mel 3
+med 1.5 0.25 0.25 0.5 0.5 1
+

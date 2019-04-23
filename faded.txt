@@ -1,0 +1,9 @@
+ton F#
+bpm 90
+deg 6 4 1 5
+xdd 1
+
+dur 4
+mel 1 3 2 3
+med 0.5
+

@@ -1,0 +1,9 @@
+ton A
+bpm 128
+acc 6 5
+xdd 0
+
+dur 14 2
+mel 4 3 2 1
+med 0.25
+

@@ -1,0 +1,9 @@
+ton C
+bpm 240
+deg 1 2
+xdd 2
+
+dur 3
+mel 3 2 2
+med 1
+

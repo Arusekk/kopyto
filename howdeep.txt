@@ -1,0 +1,8 @@
+ton G
+bpm 122
+acc 6 4 2 2
+xdd 0
+
+dur 4
+mel 1
+med 0.5 0.5 0.75 0.75 1.5
