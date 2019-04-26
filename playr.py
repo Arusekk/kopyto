@@ -39,6 +39,9 @@ class Generator:
         self.acc_pos = 0
         self.acc_pos2 = 0
 
+    def pos2dur(self, pos):
+        return float(self.params['med'][pos%len(self.params['med'])])
+
     def feed(self, f):
         self.params.clear()
 
@@ -73,14 +76,14 @@ bpm = \tempo 4 = %(bpm)s
     \chords {
         \bpm
         \transposition %(ton)s
-        \repeat unfold 16 {
+        \repeat unfold 1 {
 %(chords)s
         }
     }
     \new Staff {
         \bpm
         \transposition %(ton)s
-        \repeat unfold 16 {
+        \repeat unfold 1 {
 '''
     footer = r'''
     } } >>
@@ -107,9 +110,6 @@ bpm = \tempo 4 = %(bpm)s
             return l[2], l[0]+7, l[1]+7
         return l
 
-    def pos2dur(self, pos):
-        return float(self.params['med'][pos%len(self.params['med'])])
-
     def float2dur(self, f):
         return '4*%d/%d'%approx(f)
 
@@ -130,18 +130,18 @@ bpm = \tempo 4 = %(bpm)s
     def acc2acc(self, aa):
         i, a = aa
         a = int(a)
-        return self.accs[a]%{'dur':self.float2dur(int(self.params['dur'][i%len(self.params['dur'])]))}
+        return self.accs[a]%{'dur':self.float2dur(float(self.params['dur'][i%len(self.params['dur'])]))}
 
     def format(self):
         self.params['ton'] = self.transton(''.join(self.params.get('ton', 'C')))
         self.params['bpm'] = int(''.join(self.params.get('bpm', '120')))
         if 'acc' in self.params:
             self.params['deg'] = self.params['acc']
-            self.params['chords'] = ' '.join(map(self.acc2acc, enumerate(self.params['deg']*4)))
+            self.params['chords'] = ' '.join(map(self.acc2acc, enumerate(self.params['deg'] * 8)))
         else:
             self.params['chords'] = ''
         self.params['dur'] *= len(self.params['deg'])
-        return ' '.join(map(self.mel2ton, enumerate(self.params['mel'] * 2 *
+        return ' '.join(map(self.mel2ton, enumerate(self.params['mel'] * 4 *
             NWW(len(self.params['med']), len(self.params['dur']), len(self.params['deg']))
             )))
 
@@ -164,7 +164,7 @@ class TimidityPlayer:
 
 if __name__=="__main__":
     par = argparse.ArgumentParser()
-    par.add_argument("input", type=open)
+    par.add_argument("input", type=argparse.FileType('r'))
     par.add_argument("--only-print", "-p", action='store_true')
     
     args = par.parse_args()
